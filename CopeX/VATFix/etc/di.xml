@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config>
     <type name="Magento\Customer\Model\Vat">
-        <plugin name="CopeX_VATFix" type="CopeX_VATFix_Model_Uid" />
+        <plugin name="CopeX_VATFix::beforeCheckVatNumber" type="CopeX\VATFix\Plugin\Uid" />
     </type>
 </config>
