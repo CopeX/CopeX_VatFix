@@ -5,12 +5,10 @@ namespace CopeX\VATFix\Plugin;
 class Uid
 {
     protected $_helper;
-    protected $_logger;
 
-    public function __construct(\CopeX\VATFix\Helper\Data $helper, \Psr\Log\LoggerInterface $logger)
+    public function __construct(\CopeX\VATFix\Helper\Data $helper)
     {
         $this->_helper = $helper;
-        $this->_logger = $logger;
     }
 
     public function beforeCheckVatNumber($subject, $countryCode, $vatNumber, $requesterCountryCode = '', $requesterVatNumber = '')
@@ -25,8 +23,8 @@ class Uid
 
         if ($this->_helper->isCountryCodeInVAT($newVatNumber)) {
             $newVatNumber = substr(str_replace(' ', '', trim($vatNumber)), 2);
-            return array($countryCode, $newVatNumber, $requesterCountryCode, $newRequesterVatNumber);
         }
+        return array($countryCode, $newVatNumber, $requesterCountryCode, $newRequesterVatNumber);
     }
 
 
