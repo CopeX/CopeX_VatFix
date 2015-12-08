@@ -15,8 +15,7 @@ use Magento\TestFramework\ErrorLog;
 class UidTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * test the behaviour of CopeX_VATFix which removed the countrycode from the given uid
-     * and the valoi
+     * test the behaviour of CopeX_VATFix which removes the countrycode from the given uid
      * @param $subject
      * @param $countryCode
      * @param $vatNumber
