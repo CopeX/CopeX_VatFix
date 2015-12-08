@@ -28,7 +28,6 @@ class UidTest extends PHPUnit_Framework_TestCase
         $vatModel = $this->getMockBuilder('CopeX\VATFix\Plugin\Uid')->setConstructorArgs(
             array(new \CopeX\VATFix\Helper\Data()))->getMock();
 
-//        checkVatNumber($countryCode, $vatNumber, $requesterCountryCode = '', $requesterVatNumber = ''))
         $vatModel->method('beforeCheckVatNumber')->with($subject, $countryCode, $vatNumber)->willReturn($returnedVat);
         $this->assertEquals($returnedVat, $vatModel->beforeCheckVatNumber($subject, $countryCode, $vatNumber));
 
