@@ -11,7 +11,7 @@ class Uid
         $this->_helper = $helper;
     }
 
-    public function beforeCheckVatNumber($subject, $countryCode, $vatNumber, $requesterCountryCode = '', $requesterVatNumber = '')
+    public function beforeCheckVatNumber(\Magento\Customer\Model\Vat $subject, $countryCode, $vatNumber, $requesterCountryCode = '', $requesterVatNumber = '')
     {
         $newVatNumber = $vatNumber;
         $newRequesterVatNumber = $requesterVatNumber;

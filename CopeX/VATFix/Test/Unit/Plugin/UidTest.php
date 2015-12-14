@@ -22,21 +22,26 @@ class UidTest extends PHPUnit_Framework_TestCase
      * @param $returnedVat
      * @dataProvider dataProviderUidWithCountryCode
      */
-    public function testUidWithCountryCode($subject, $countryCode, $vatNumber, $returnedVat)
+    public function testUidWithCountryCode($countryCode, $vatNumber, $returnedVat)
     {
-        $vatModel = $this->getMockBuilder('CopeX\VATFix\Plugin\Uid')->setConstructorArgs(
-            array(new \CopeX\VATFix\Helper\Data()))->getMock();
+        $this->objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
 
-        $vatModel->method('beforeCheckVatNumber')->with($subject, $countryCode, $vatNumber)->willReturn($returnedVat);
-        $this->assertEquals($returnedVat, $vatModel->beforeCheckVatNumber($subject, $countryCode, $vatNumber));
+        $vatHelper = $this->getMockBuilder('\CopeX\VATFix\Helper\Data')->getMock();
+        $vatHelper->method('isCountryCodeInVAT')->willReturn(true);
+
+        $vatModel = $this->objectManager->getObject('CopeX\VATFix\Plugin\Uid', ['helper' => $vatHelper]);
+
+        $subject = $this->objectManager->getObject('\Magento\Customer\Model\Vat');
+
+        $result = $vatModel->beforeCheckVatNumber($subject, $countryCode, $vatNumber);
+        $this->assertEquals(array($countryCode, $returnedVat, '', ''), $result);
 
     }
 
     public function dataProviderUidWithCountryCode()
     {
         return [
-            ['', 'AT', 'U69932326', 'U69932326'],
-            ['', 'AT', 'ATU69932326', 'U69932326']
+            ['AT', 'ATU69932326', 'U69932326']
         ];
     }
 }
