@@ -16,7 +16,6 @@ class UidTest extends PHPUnit_Framework_TestCase
 {
     /**
      * test the behaviour of CopeX_VATFix which removes the countrycode from the given uid
-     * @param $subject
      * @param $countryCode
      * @param $vatNumber
      * @param $returnedVat
@@ -29,7 +28,7 @@ class UidTest extends PHPUnit_Framework_TestCase
         $vatHelper = $this->getMockBuilder('\CopeX\VATFix\Helper\Data')->getMock();
         $vatHelper->method('isCountryCodeInVAT')->willReturn(true);
 
-        $vatModel = $this->objectManager->getObject('CopeX\VATFix\Plugin\Uid', ['helper' => $vatHelper]);
+        $vatModel = $this->objectManager->getObject('CopeX\VATFix\Plugin\UidPlugin', ['helper' => $vatHelper]);
 
         $subject = $this->objectManager->getObject('\Magento\Customer\Model\Vat');
 
@@ -38,6 +37,9 @@ class UidTest extends PHPUnit_Framework_TestCase
 
     }
 
+    /**
+     * @return array
+     */
     public function dataProviderUidWithCountryCode()
     {
         return [

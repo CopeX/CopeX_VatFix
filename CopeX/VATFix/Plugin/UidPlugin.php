@@ -2,15 +2,26 @@
 
 namespace CopeX\VATFix\Plugin;
 
-class Uid
+class UidPlugin
 {
     protected $_helper;
 
+    /**
+     * @param \CopeX\VATFix\Helper\Data $helper
+     */
     public function __construct(\CopeX\VATFix\Helper\Data $helper)
     {
         $this->_helper = $helper;
     }
 
+    /**
+     * @param \Magento\Customer\Model\Vat $subject
+     * @param $countryCode
+     * @param $vatNumber
+     * @param string $requesterCountryCode
+     * @param string $requesterVatNumber
+     * @return array
+     */
     public function beforeCheckVatNumber(\Magento\Customer\Model\Vat $subject, $countryCode, $vatNumber, $requesterCountryCode = '', $requesterVatNumber = '')
     {
         $newVatNumber = $vatNumber;

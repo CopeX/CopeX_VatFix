@@ -3,18 +3,28 @@
 
 namespace CopeX\VATFix\Helper;
 
-class Data {
+class Data
+{
 
-
-    public function isCountryCodeInVAT( $vatNumber ) {
-        $countryCode = substr( str_replace( ' ', '', trim( $vatNumber ) ), 0, 2 );
-        if (array_key_exists( strtoupper( $countryCode ), $this->getCountries() )) {
+    /**
+     * check if the vatNumber has a valid countrycode at the first 2 letters
+     * @param $vatNumber
+     * @return bool|void
+     */
+    public function isCountryCodeInVAT($vatNumber)
+    {
+        $countryCode = substr(str_replace(' ', '', trim($vatNumber)), 0, 2);
+        if (array_key_exists(strtoupper($countryCode), $this->getCountries())) {
             return true;
         }
         return;
     }
 
-    private function getCountries() {
+    /**
+     * @return array
+     */
+    private function getCountries()
+    {
         return array(
             "AF" => "Afghanistan",
             "AX" => "\xc3\x85land Islands",
