@@ -1,6 +1,6 @@
 {
     "name": "copex/vatfix",
-    "description": "Migration of the multibyte/vatfix module for Magento 2",
+    "description": "Magento2 module for accepting VAT's (UID) with country code (ex.ATU69932326) as usual in EU.",
     "type": "magento2-module",
     "version": "0.0.1",
     "license": [
