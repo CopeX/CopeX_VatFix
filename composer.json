@@ -17,13 +17,5 @@
         "files": [
             "registration.php"
         ]
-    },
-    "extra": {
-        "map": [
-            [
-                "*",
-                "CopeX/VATFix"
-            ]
-        ]
     }
 }
