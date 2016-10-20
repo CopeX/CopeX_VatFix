@@ -31,6 +31,8 @@ When a customer saves a vat number:
 This extension is a plugin, it will work out of the box when it is installed correctly. 
 There are no settings for it to work.
 
+##Demonstration
+[I made a Demonstration Video here](https://www.youtube.com/watch?v=wSgHk4Wq7pA)
 
 Author: Roman Hutterer  
 Website: [CopeX eCommerce Solutions](https://copex.io)
