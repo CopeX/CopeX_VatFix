@@ -16,6 +16,9 @@
  */
 namespace CopeX\VATFix\Plugin;
 
+use Magento\Framework\Exception\ValidatorException;
+use Magento\Customer\Model\Vat;
+
 class UidPlugin
 {
     protected $_helper;
@@ -23,9 +26,10 @@ class UidPlugin
     /**
      * @param \CopeX\VATFix\Helper\Data $helper
      */
-    public function __construct(\CopeX\VATFix\Helper\Data $helper)
+    public function __construct(\CopeX\VATFix\Helper\Data $helper, \Magento\Framework\Message\ManagerInterface $messageManager )
     {
         $this->_helper = $helper;
+        $this->_messageManager = $messageManager;
     }
 
     /**
@@ -36,15 +40,18 @@ class UidPlugin
      * @param string $requesterVatNumber
      * @return array
      */
-    public function beforeCheckVatNumber(\Magento\Customer\Model\Vat $subject, $countryCode, $vatNumber, $requesterCountryCode = '', $requesterVatNumber = '')
+    public function beforeCheckVatNumber(Vat $subject, $countryCode, $vatNumber, $requesterCountryCode = '', $requesterVatNumber = '')
     {
+        if($countryCode != $this->_helper->getCountryCodeFromVAT($vatNumber)){
+            $this->_messageManager->addError(__('Your selected country does not match the countrycode in VAT.'));
+            return array();
+        }
         $newVatNumber = $vatNumber;
         $newRequesterVatNumber = $requesterVatNumber;
 
         if ($requesterVatNumber !== '' && $this->_helper->isCountryCodeInVAT($requesterVatNumber)) {
             $newRequesterVatNumber = substr(str_replace(' ', '', trim($requesterVatNumber)), 2);
         }
-
 
         if ($this->_helper->isCountryCodeInVAT($newVatNumber)) {
             $newVatNumber = substr(str_replace(' ', '', trim($vatNumber)), 2);
