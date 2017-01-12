@@ -27,11 +27,19 @@ class Data
      */
     public function isCountryCodeInVAT($vatNumber)
     {
-        $countryCode = substr(str_replace(' ', '', trim($vatNumber)), 0, 2);
+        $countryCode = $this->getCountryCodeFromVAT($vatNumber);
         if (array_key_exists(strtoupper($countryCode), $this->getCountries())) {
             return true;
         }
         return;
+    }
+
+    /**
+     * @param $vatNumber
+     * @return string countrycode from within param $vatNumber
+     */
+    public function getCountryCodeFromVAT($vatNumber){
+        return substr(str_replace(' ', '', trim($vatNumber)), 0, 2);
     }
 
     /**
