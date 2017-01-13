@@ -17,8 +17,8 @@
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-\Magento\Framework\Component\ComponentRegistrar::register(
-    \Magento\Framework\Component\ComponentRegistrar::MODULE,
+ComponentRegistrar::register(
+    ComponentRegistrar::MODULE,
     'CopeX_VATFix',
     __DIR__
 );
