@@ -12,6 +12,16 @@ env:
     - PULSESTORM_PESTLE_URL=http://pestle.pulsestorm.net  
     - PULSESTORM_COMPOSER_REPOSITORY_TO_TEST=https://github.com/CopeX/CopeX_VatFix.git
     - PULSESTORM_COMPOSER_PACKAGE_TO_TEST=copex/vatfix
+    matrix:
+        - TEST_SUITE=unit
+        - TEST_SUITE=integration INTEGRATION_INDEX=1
+        - TEST_SUITE=integration INTEGRATION_INDEX=2
+        - TEST_SUITE=integration INTEGRATION_INDEX=3
+        - TEST_SUITE=static
+matrix:
+  exclude:
+    - php: 7.0
+      env: TEST_SUITE=static
 addons:
   hosts:
     # should match PULSESTORM_MAGE2_FAKE_URL above
@@ -49,6 +59,7 @@ before_script:
     - sudo apt-get -y -qq autoclean;
     - sudo apt-get install -y -qq mysql-server-5.6 mysql-client-5.6;    
     - mysql -uroot -e 'SET @@global.sql_mode = NO_ENGINE_SUBSTITUTION; CREATE DATABASE magento_2_travis;';
+    - mysql ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
     # add apache
     - sudo apt-get install -y -qq apache2 libapache2-mod-fastcgi
     #   enable php-fpm -- www.conf.default is PHP 7 only, so we dev/null any copy problems    
@@ -68,7 +79,7 @@ before_script:
     - sudo service apache2 restart 
 
     # clone main magento github repository
-    - git clone https://github.com/magento/magento2    
+    - git clone https://github.com/magento/magento2
 
     # install Magento
     - cd magento2  
@@ -81,7 +92,9 @@ before_script:
     - php bin/magento setup:install --admin-email "$PULSESTORM_MAGE2_ADMIN_EMAIL" --admin-firstname "$PULSESTORM_MAGE2_ADMIN_FIRST_NAME" --admin-lastname "$PULSESTORM_MAGE2_ADMIN_LAST_NAME" --admin-password "$PULSESTORM_MAGE2_ADMIN_PASSWORD" --admin-user "$PULSESTORM_MAGE2_ADMIN_USERNAME" --backend-frontname admin --base-url "$PULSESTORM_MAGE2_FAKE_URL" --db-host 127.0.0.1 --db-name magento_2_travis --db-user root --session-save files --use-rewrites 1 --use-secure 0 -vvv    
     # test that magento is installed
     - curl "$PULSESTORM_MAGE2_FAKE_URL/index.php" > /tmp/output.txt
-    # run unit tests
-    - php bin/magento dev:tests:run
 
-script: test 'grep -Fx "magento-2-travis.dev" /tmp/output.txt'
+script:
+    - test 'grep -Fx "magento-2-travis.dev" /tmp/output.txt'
+    - cd dev/tests/$TEST_SUITE
+    - test $TEST_SUITE = "static" && TEST_FILTER='--filter "Magento\\Test\\Php\\LiveCodeTest"' || true
+    - phpunit $TEST_FILTER
