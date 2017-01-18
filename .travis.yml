@@ -59,7 +59,6 @@ before_script:
     - sudo apt-get -y -qq autoclean;
     - sudo apt-get install -y -qq mysql-server-5.6 mysql-client-5.6;    
     - mysql -uroot -e 'SET @@global.sql_mode = NO_ENGINE_SUBSTITUTION; CREATE DATABASE magento_2_travis;';
-    - mysql ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
     # add apache
     - sudo apt-get install -y -qq apache2 libapache2-mod-fastcgi
     #   enable php-fpm -- www.conf.default is PHP 7 only, so we dev/null any copy problems    
