@@ -83,4 +83,4 @@ before_script:
     - curl "$PULSESTORM_MAGE2_FAKE_URL/index.php" > /tmp/output.txt
 
 script:
-    - phpunit -c ./dev/tests/unit/phpunit.xml.dist ./vendor/copex/vatfix/Test/Unit/Plugin/UidTest.php
+    - ./vendor/bin/phpunit -c ./dev/tests/unit/phpunit.xml.dist ./vendor/copex/vatfix/Test/Unit/Plugin/UidTest.php
