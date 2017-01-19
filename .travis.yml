@@ -94,7 +94,4 @@ before_script:
     - curl "$PULSESTORM_MAGE2_FAKE_URL/index.php" > /tmp/output.txt
 
 script:
-    - test 'grep -Fx "magento-2-travis.dev" /tmp/output.txt'
-    - cd dev/tests/$TEST_SUITE
-    - test $TEST_SUITE = "static" && TEST_FILTER='--filter "Magento\\Test\\Php\\LiveCodeTest"' || true
-    - phpunit $TEST_FILTER
+    - phpunit -c ./dev/tests/unit/phpunit.xml.dist ./vendor/copex/vatfix/Test/Unit/Plugin/UidTest.php
