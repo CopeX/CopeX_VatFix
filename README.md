@@ -3,6 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/copex/vatfix/v/stable)](https://packagist.org/packages/copex/vatfix)
 [![Total Downloads](https://poser.pugx.org/copex/vatfix/downloads)](https://packagist.org/packages/copex/vatfix)
 [![Monthly Downloads](https://poser.pugx.org/copex/vatfix/d/monthly)](https://packagist.org/packages/copex/vatfix)
+[![Build Status](https://travis-ci.org/CopeX/CopeX_VatFix.svg?branch=master)](https://travis-ci.org/CopeX/CopeX_VatFix)
 
 This extension for Magento2 changes the behaviour of VAT validation in Magento. 
 
