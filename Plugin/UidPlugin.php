@@ -48,7 +48,6 @@ class UidPlugin
         }
         $newVatNumber = $vatNumber;
         $newRequesterVatNumber = $requesterVatNumber;
-
         if ($requesterVatNumber !== '' && $this->_helper->isCountryCodeInVAT($requesterVatNumber)) {
             $newRequesterVatNumber = substr(str_replace(' ', '', trim($requesterVatNumber)), 2);
         }
