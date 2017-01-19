@@ -12,16 +12,6 @@ env:
     - PULSESTORM_PESTLE_URL=http://pestle.pulsestorm.net  
     - PULSESTORM_COMPOSER_REPOSITORY_TO_TEST=https://github.com/CopeX/CopeX_VatFix.git
     - PULSESTORM_COMPOSER_PACKAGE_TO_TEST=copex/vatfix
-    matrix:
-        - TEST_SUITE=unit
-        - TEST_SUITE=integration INTEGRATION_INDEX=1
-        - TEST_SUITE=integration INTEGRATION_INDEX=2
-        - TEST_SUITE=integration INTEGRATION_INDEX=3
-        - TEST_SUITE=static
-matrix:
-  exclude:
-    - php: 7.0
-      env: TEST_SUITE=static
 addons:
   hosts:
     # should match PULSESTORM_MAGE2_FAKE_URL above
@@ -33,7 +23,6 @@ php:
    - 5.6
    - 7.0
 before_script:
-    - ./dev/travis/before_script.sh
     # some useful debugging stuff for travis
     #- curl http://magento-2-travis.dev/index.php
     #- curl http://magento-2-travis.dev/  
