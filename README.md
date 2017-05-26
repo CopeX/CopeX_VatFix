@@ -1,5 +1,5 @@
 # CopeX_VatFix
-## Magento2 module enable UID Validation with countrycodes (ex. ATU69932326) as usual in EU.
+## Magento2 module to enable UID Validation with countrycodes (ex. ATU69932326) as usual in EU.
 [![Latest Stable Version](https://poser.pugx.org/copex/vatfix/v/stable)](https://packagist.org/packages/copex/vatfix)
 [![Total Downloads](https://poser.pugx.org/copex/vatfix/downloads)](https://packagist.org/packages/copex/vatfix)
 [![Monthly Downloads](https://poser.pugx.org/copex/vatfix/d/monthly)](https://packagist.org/packages/copex/vatfix)
