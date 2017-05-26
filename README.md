@@ -1,5 +1,5 @@
 # CopeX_VatFix
-##Magento2 module enable UID Validation with countrycodes (ex. ATU69932326) as usual in EU.
+## Magento2 module enable UID Validation with countrycodes (ex. ATU69932326) as usual in EU.
 [![Latest Stable Version](https://poser.pugx.org/copex/vatfix/v/stable)](https://packagist.org/packages/copex/vatfix)
 [![Total Downloads](https://poser.pugx.org/copex/vatfix/downloads)](https://packagist.org/packages/copex/vatfix)
 [![Monthly Downloads](https://poser.pugx.org/copex/vatfix/d/monthly)](https://packagist.org/packages/copex/vatfix)
@@ -16,7 +16,7 @@ For all other countries the check stays the same. It uses the original VIES Serv
 
 
 
-##Installation
+## Installation
 Copy the folder to your Magento2 "app/code" directory and run   
 ```bin/magento setup:upgrade```
 
@@ -24,7 +24,7 @@ or via composer
 ```composer require copex/vatfix```
 
 
-##Workflow
+## Workflow
 When a customer saves a vat number:
 1. the plugin takes the given string 
 2. validates the country code if it is a valid EU country code defined in ISO-3166-Alpha-2-Code
@@ -35,7 +35,7 @@ When a customer saves a vat number:
 This extension is a plugin, it will work out of the box when it is installed correctly. 
 There are no settings for it to work.
 
-##Demonstration
+## Demonstration
 [I made a Demonstration Video here](https://www.youtube.com/watch?v=wSgHk4Wq7pA)
 
 Author: Roman Hutterer  
