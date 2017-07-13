@@ -43,7 +43,7 @@ class UidPlugin
     public function beforeCheckVatNumber(Vat $subject, $countryCode, $vatNumber, $requesterCountryCode = '', $requesterVatNumber = '')
     {
         $countryCodeFromVAT = $this->_helper->getCountryCodeFromVAT($vatNumber);
-        if(!is_numeric($countryCodeFromVAT) && $countryCode != $countryCodeFromVAT){
+        if(!empty($vatNumber) && !is_numeric($countryCodeFromVAT) && $countryCode != $countryCodeFromVAT){
             $this->_messageManager->addError(__('Your selected country does not match the countrycode in VAT.'));
             return array();
         }
