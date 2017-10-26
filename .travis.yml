@@ -39,7 +39,6 @@ before_script:
     #- sudo ls /etc/apache2/sites-available
     #- sudo ls /etc/apache2/sites-enabled
     #- pwd    
-    #    
     # get latest composer 
     - composer selfupdate
     # disable xdebug for perf    
