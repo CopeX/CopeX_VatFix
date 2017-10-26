@@ -23,8 +23,10 @@ or via composer
 
 then
 ```./bin/magento module:enable CopeX_VATFix```
-folowed by 
+
+followed by 
 ```./bin/magento setup:upgrade```
+
 followed by
 ```./bin/magento setup:di:compile```
 
