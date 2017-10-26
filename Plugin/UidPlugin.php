@@ -45,7 +45,7 @@ class UidPlugin
     {
         $countryCodeFromVAT = $this->_helper->getCountryCodeFromVAT($vatNumber);
         if(!empty($vatNumber) && !is_numeric($countryCodeFromVAT) && $countryCode != $countryCodeFromVAT){
-            $this->addErrorMessageOnce(__('Your selected country does not match the countrycode in VAT.'));
+            $this->addErrorMessage(__('Your selected country does not match the countrycode in VAT.'));
             return array();
         }
         $newVatNumber = $vatNumber;
@@ -61,10 +61,10 @@ class UidPlugin
     }
 
     /**
-     * @param $errorMsg
+     * @param string $errorMsg
      * @return bool
      */
-    private function addErrorMessageOnce($errorMsg)
+    private function addErrorMessage($errorMsg)
     {
         foreach ($this->_messageManager->getMessages() as $message) {
             /** @var MessageInterface $message */
