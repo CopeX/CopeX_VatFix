@@ -69,12 +69,10 @@ before_script:
 
     # clone main magento github repository
     - git clone https://github.com/magento/magento2
-    - git checkout tags/2.1.9
 
     # install Magento
-    - cd magento2  
-    # switch to specific branch in you like
-    #- git checkout 2.0;git checkout tags/2.0.2
+    - cd magento2
+    - git checkout tags/2.1.9
     # add composer package under test, composer require will trigger update/install
     - composer config repositories.travis_to_test git https://github.com/CopeX/CopeX_VatFix.git
     - composer require copex/vatfix dev-master
