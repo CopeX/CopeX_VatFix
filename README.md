@@ -18,10 +18,16 @@ For all other countries the check stays the same. It uses the original VIES Serv
 
 ## Installation
 Copy the folder to your Magento2 "app/code" directory and run   
-```bin/magento setup:upgrade```
-
 or via composer     
 ```composer require copex/vatfix```
+
+then
+```./bin/magento module:enable CopeX_VATFix```
+folowed by 
+```./bin/magento setup:upgrade```
+followed by
+```./bin/magento setup:di:compile```
+
 
 
 ## Workflow
