@@ -18,6 +18,7 @@ namespace CopeX\VATFix\Plugin;
 
 use Magento\Framework\Exception\ValidatorException;
 use Magento\Customer\Model\Vat;
+use Magento\Framework\Message\MessageInterface;
 
 class UidPlugin
 {
@@ -44,7 +45,7 @@ class UidPlugin
     {
         $countryCodeFromVAT = $this->_helper->getCountryCodeFromVAT($vatNumber);
         if(!empty($vatNumber) && !is_numeric($countryCodeFromVAT) && $countryCode != $countryCodeFromVAT){
-            $this->_messageManager->addError(__('Your selected country does not match the countrycode in VAT.'));
+            $this->addErrorMessage(__('Your selected country does not match the countrycode in VAT.'));
             return array();
         }
         $newVatNumber = $vatNumber;
@@ -59,5 +60,20 @@ class UidPlugin
         return array($countryCode, $newVatNumber, $requesterCountryCode, $newRequesterVatNumber);
     }
 
+    /**
+     * @param string $errorMsg
+     * @return bool
+     */
+    private function addErrorMessage($errorMsg)
+    {
+        foreach ($this->_messageManager->getMessages() as $message) {
+            /** @var MessageInterface $message */
+            if ($message->getText() === $errorMsg) {
+                return false;
+            }
+        }
 
+        $this->_messageManager->addError($errorMsg);
+        return true;
+    }
 }
