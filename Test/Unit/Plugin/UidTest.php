@@ -19,12 +19,10 @@ use Magento\Framework\ObjectManager;
 use Magento\TestFramework\ErrorLog;
 
 
-require_once 'PHPUnit/Autoload.php';
-
 /**
  * Class UidTest
  */
-class UidTest extends PHPUnit_Framework_TestCase
+class UidTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test the behaviour of CopeX_VATFix which removes the countrycode from the given uid
