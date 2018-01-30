@@ -5,15 +5,16 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace CopeX\VATFix\Test\Unit\Plugin;
+
 use Magento\Framework\ObjectManager;
 use Magento\TestFramework\ErrorLog;
 
@@ -32,8 +33,14 @@ class UidTest extends PHPUnit_Framework_TestCase
      * @param $returnedRequesterVatNumber
      * @dataProvider dataProviderUidWithCountryCode
      */
-    public function testUidWithCountryCode($countryCode, $vatNumber, $returnedVat, $requesterCountryCode,  $requesterVatNumber, $returnedRequesterVatNumber)
-    {
+    public function testUidWithCountryCode(
+        $countryCode,
+        $vatNumber,
+        $returnedVat,
+        $requesterCountryCode,
+        $requesterVatNumber,
+        $returnedRequesterVatNumber
+    ) {
         $this->objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
 
         $vatHelper = $this->getMockBuilder('\CopeX\VATFix\Helper\Data')->getMock();
@@ -44,9 +51,22 @@ class UidTest extends PHPUnit_Framework_TestCase
 
         $subject = $this->objectManager->getObject('\Magento\Customer\Model\Vat');
 
-        $result = $vatModel->beforeCheckVatNumber($subject, $countryCode, $vatNumber, $requesterCountryCode, $requesterVatNumber);
-        $this->assertEquals(array($countryCode, $returnedVat, $requesterCountryCode, $returnedRequesterVatNumber), $result);
-
+        $result = $vatModel->beforeCheckVatNumber(
+            $subject,
+            $countryCode,
+            $vatNumber,
+            $requesterCountryCode,
+            $requesterVatNumber
+        );
+        $this->assertEquals(
+            [
+                $countryCode,
+                $returnedVat,
+                $requesterCountryCode,
+                $returnedRequesterVatNumber,
+            ],
+            $result
+        );
     }
 
     /**
@@ -55,7 +75,7 @@ class UidTest extends PHPUnit_Framework_TestCase
     public function dataProviderUidWithCountryCode()
     {
         return [
-            ['AT', 'ATU69932326', 'U69932326', 'AT', 'ATU69932326', 'U69932326']
+            ['AT', 'ATU69932326', 'U69932326', 'AT', 'ATU69932326', 'U69932326'],
         ];
     }
 }

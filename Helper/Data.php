@@ -5,12 +5,10 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -23,7 +21,7 @@ class Data
     /**
      * check if the vatNumber has a valid countrycode at the first 2 letters
      * @param $vatNumber
-     * @return bool|void
+     * @return bool
      */
     public function isCountryCodeInVAT($vatNumber)
     {
@@ -31,14 +29,15 @@ class Data
         if (array_key_exists(strtoupper($countryCode), $this->getCountries())) {
             return true;
         }
-        return;
+        return false;
     }
 
     /**
      * @param $vatNumber
      * @return string countrycode from within param $vatNumber
      */
-    public function getCountryCodeFromVAT($vatNumber){
+    public function getCountryCodeFromVAT($vatNumber)
+    {
         return substr(str_replace(' ', '', trim($vatNumber)), 0, 2);
     }
 
@@ -47,7 +46,7 @@ class Data
      */
     private function getCountries()
     {
-        return array(
+        return [
             "AF" => "Afghanistan",
             "AX" => "\xc3\x85land Islands",
             "AL" => "Albania",
@@ -296,9 +295,7 @@ class Data
             "EH" => "Western Sahara",
             "YE" => "Yemen",
             "ZM" => "Zambia",
-            "ZW" => "Zimbabwe"
-        );
+            "ZW" => "Zimbabwe",
+        ];
     }
-
-
 }
