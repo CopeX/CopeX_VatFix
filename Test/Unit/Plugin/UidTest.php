@@ -18,6 +18,9 @@ namespace CopeX\VATFix\Test\Unit\Plugin;
 use Magento\Framework\ObjectManager;
 use Magento\TestFramework\ErrorLog;
 
+
+require_once 'PHPUnit/Autoload.php';
+
 /**
  * Class UidTest
  */
