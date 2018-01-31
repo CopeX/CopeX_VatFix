@@ -17,12 +17,12 @@ namespace CopeX\VATFix\Test\Unit\Plugin;
 
 use Magento\Framework\ObjectManager;
 use Magento\TestFramework\ErrorLog;
-
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class UidTest
  */
-class UidTest extends \PHPUnit\Framework\TestCase
+class UidTest extends TestCase
 {
     /**
      * test the behaviour of CopeX_VATFix which removes the countrycode from the given uid

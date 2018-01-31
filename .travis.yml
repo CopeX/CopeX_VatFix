@@ -13,7 +13,6 @@ env:
     - PULSESTORM_COMPOSER_REPOSITORY_TO_TEST=https://github.com/CopeX/CopeX_VatFix.git
     - PULSESTORM_COMPOSER_PACKAGE_TO_TEST=copex/vatfix
     matrix:
-    - MAGENTO_VERSION=2.1.9
     - MAGENTO_VERSION=2.2.0
 addons:
   hosts:
