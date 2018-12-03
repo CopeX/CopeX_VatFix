@@ -2,12 +2,10 @@
     "name": "copex/vatfix",
     "description": "Magento2 module for accepting VAT's (UID) with country code (ex.ATU69932326) as usual in EU.",
     "type": "magento2-module",
+    "version": "1.0.7",
     "license": [
         "GPL-3.0-or-later"
     ],
-    "require": {
-        "php": "~5.6.0|~7.0.0|~7.1.0"
-    },
     "require-dev" : {
         "phpmd/phpmd" : "2.5.*",
         "phploc/phploc": "~2.1",
