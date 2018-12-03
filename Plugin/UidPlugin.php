@@ -52,18 +52,17 @@ class UidPlugin
         $countryCodeFromVAT = $this->helper->getCountryCodeFromVAT($vatNumber);
         if (!empty($vatNumber) && !is_numeric($countryCodeFromVAT) && $countryCode != $countryCodeFromVAT) {
             $this->addErrorMessage(__('Your selected country does not match the countrycode in VAT.'));
-            return [];
         }
-        $newVatNumber = $vatNumber;
-        $newRequesterVatNumber = $requesterVatNumber;
-        if ($requesterVatNumber !== '' && $this->helper->isCountryCodeInVAT($requesterVatNumber)) {
-            $newRequesterVatNumber = substr(str_replace(' ', '', trim($requesterVatNumber)), 2);
-        }
+        else {
+            if ($requesterVatNumber !== '' && $this->helper->isCountryCodeInVAT($requesterVatNumber)) {
+                $requesterVatNumber = substr(str_replace(' ', '', trim($requesterVatNumber)), 2);
+            }
 
-        if ($this->helper->isCountryCodeInVAT($newVatNumber)) {
-            $newVatNumber = substr(str_replace(' ', '', trim($vatNumber)), 2);
+            if ($this->helper->isCountryCodeInVAT($vatNumber)) {
+                $vatNumber = substr(str_replace(' ', '', trim($vatNumber)), 2);
+            }
         }
-        return [$countryCode, $newVatNumber, $requesterCountryCode, $newRequesterVatNumber];
+        return [$countryCode, $vatNumber, $requesterCountryCode, $requesterVatNumber];
     }
 
     /**
