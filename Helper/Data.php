@@ -38,7 +38,7 @@ class Data
      */
     public function getCountryCodeFromVAT($vatNumber)
     {
-        return substr(str_replace(' ', '', trim($vatNumber)), 0, 2);
+        return strtoupper(substr(str_replace(' ', '', trim($vatNumber)), 0, 2));
     }
 
     /**
